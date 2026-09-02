@@ -129,22 +129,33 @@ Your JSON response:"""
         else:
             contexts = retrieve(user_query)
 
-        # Step 1b: If expansion produced nothing usable, the query could not be
-        # turned into a search at all. Ask the fallback node to explain that to
-        # the user instead of answering from a degraded retrieval.
+        # Step 1b: A small model can fail to produce usable keywords - bad JSON,
+        # a timeout, or a well-formed but empty reply. That must never cost the
+        # user an answer: retrieval has already run on the original query text,
+        # so if it found anything we carry on and answer from it as normal.
+        # Only when there is nothing at all to answer from does the fallback
+        # node step in to explain the problem and suggest rephrasings.
         if expansion is not None and expansion.failed:
-            if verbose:
-                reason = expansion.error or "no keywords or alternative queries"
-                print(f"↩️  Query expansion produced nothing usable ({reason})")
-                print("   Generating a fallback message instead of an answer")
-            fallback = generate_fallback_sync(user_query, expansion.error)
-            return {
-                "answer": fallback.render(),
-                "sources": [],
-                "mcp_used": False,
-                "mcp_tool": None,
-                "fallback": True,
-            }
+            reason = expansion.error or "no keywords or alternative queries"
+
+            if contexts:
+                if verbose:
+                    print(f"⚠️  Query expansion failed ({reason})")
+                    print(f"   Using the original query text instead - "
+                          f"{len(contexts)} chunks still retrieved")
+            else:
+                if verbose:
+                    print(f"↩️  Query expansion failed ({reason}) "
+                          f"and retrieval found nothing")
+                    print("   Generating a fallback message")
+                fallback = generate_fallback_sync(user_query, expansion.error)
+                return {
+                    "answer": fallback.render(),
+                    "sources": [],
+                    "mcp_used": False,
+                    "mcp_tool": None,
+                    "fallback": True,
+                }
 
         if verbose:
             print(f"📚 Retrieved {len(contexts)} relevant chunks from knowledge base")
