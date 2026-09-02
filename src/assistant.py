@@ -8,8 +8,10 @@ from rich.markdown import Markdown
 # Add current directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
 from rag.query import retrieve, build_prompt, ask_llm
+from rag.search import hybrid_retrieve_sync
+from rag.fallback import generate_fallback_sync
 from mcp.client import MCPClient
-from config import OLLAMA_MODEL
+from config import OLLAMA_MODEL, USE_HYBRID_RETRIEVAL
 
 class CompanyKBAssistant:
     """Company Knowledge Base Assistant combining RAG and MCP."""
@@ -119,11 +121,40 @@ Your JSON response:"""
     
     def query(self, user_query: str, verbose=False):
         """Answer a question using RAG and optionally MCP tools."""
-        # Step 1: Retrieve from RAG
-        contexts = retrieve(user_query)
-        
+        # Step 1: Retrieve from RAG - hybrid (expansion + vector + full-text,
+        # fused with RRF) or the plain single vector search.
+        expansion = None
+        if USE_HYBRID_RETRIEVAL:
+            contexts, expansion = hybrid_retrieve_sync(user_query)
+        else:
+            contexts = retrieve(user_query)
+
+        # Step 1b: If expansion produced nothing usable, the query could not be
+        # turned into a search at all. Ask the fallback node to explain that to
+        # the user instead of answering from a degraded retrieval.
+        if expansion is not None and expansion.failed:
+            if verbose:
+                reason = expansion.error or "no keywords or alternative queries"
+                print(f"↩️  Query expansion produced nothing usable ({reason})")
+                print("   Generating a fallback message instead of an answer")
+            fallback = generate_fallback_sync(user_query, expansion.error)
+            return {
+                "answer": fallback.render(),
+                "sources": [],
+                "mcp_used": False,
+                "mcp_tool": None,
+                "fallback": True,
+            }
+
         if verbose:
             print(f"📚 Retrieved {len(contexts)} relevant chunks from knowledge base")
+            if USE_HYBRID_RETRIEVAL and contexts:
+                agreement = ", ".join(
+                    f"{c['source'].split('/')[-1]}#{c['chunk_id']}"
+                    f"({c.get('match_count', 0)})"
+                    for c in contexts
+                )
+                print(f"   ranked by RRF (searches agreeing): {agreement}")
         
         # Step 2: Ask LLM if MCP tools are needed
         mcp_result = None
@@ -155,7 +186,8 @@ Your JSON response:"""
             "answer": answer,
             "sources": sources,
             "mcp_used": mcp_result is not None,
-            "mcp_tool": mcp_tool_used
+            "mcp_tool": mcp_tool_used,
+            "fallback": False,
         }
     
     def close(self):

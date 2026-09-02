@@ -1,5 +1,4 @@
 import faiss
-import pickle
 import requests
 import sys
 from pathlib import Path
@@ -7,9 +6,9 @@ from sentence_transformers import SentenceTransformer
 
 # Add parent directory to path for config import
 sys.path.insert(0, str(Path(__file__).parent.parent))
+from rag import store
 from config import (
     FAISS_INDEX_PATH,
-    CHUNKS_PATH,
     EMBEDDING_MODEL,
     OLLAMA_URL,
     OLLAMA_MODEL,
@@ -18,50 +17,46 @@ from config import (
 
 model = SentenceTransformer(EMBEDDING_MODEL)
 
-# Global variables for index and chunks
+# Global for the loaded FAISS index. Chunk text lives in SQLite (rag.store).
 index = None
-chunks = []
+
+
+def _load_index():
+    """Load the FAISS index if both it and the chunk database are present."""
+    global index
+
+    index_path = Path(__file__).parent.parent / FAISS_INDEX_PATH
+    if not index_path.exists() or store.count() == 0:
+        return False
+
+    index = faiss.read_index(str(index_path))
+    return True
 
 
 def _ensure_index_exists():
-    """Ensure FAISS index exists, build it if it doesn't."""
-    global index, chunks
-    
-    # Resolve paths relative to src directory
-    src_dir = Path(__file__).parent.parent
-    index_path = src_dir / FAISS_INDEX_PATH
-    chunks_path = src_dir / CHUNKS_PATH
-    
-    # Check if index exists
-    if index_path.exists() and chunks_path.exists():
-        try:
-            index = faiss.read_index(str(index_path))
-            with open(chunks_path, "rb") as f:
-                chunks = pickle.load(f)
+    """Ensure the FAISS index and chunk database exist, build them if they don't."""
+    try:
+        if _load_index():
             return True
-        except Exception as e:
-            print(f"⚠️  Warning: Error loading existing index: {e}")
-            print("Rebuilding index...")
-    
-    # Index doesn't exist or failed to load, build it
+    except Exception as e:
+        print(f"⚠️  Warning: Error loading existing index: {e}")
+        print("Rebuilding index...")
+
+    # Index or database missing/unreadable, build both
     print("📦 Index not found. Building index from documents...")
     try:
         from rag.build_index import build_index
         build_index()
-        
-        # Load the newly created index
-        if index_path.exists() and chunks_path.exists():
-            index = faiss.read_index(str(index_path))
-            with open(chunks_path, "rb") as f:
-                chunks = pickle.load(f)
+
+        if _load_index():
             print("✅ Index built and loaded successfully")
             return True
-        else:
-            print("❌ Failed to build index. No documents found or error occurred.")
-            from config import DOCUMENTS_DIR
-            docs_path = src_dir / DOCUMENTS_DIR
-            print(f"   Check that documents exist in: {docs_path}")
-            return False
+
+        print("❌ Failed to build index. No documents found or error occurred.")
+        from config import DOCUMENTS_DIR
+        docs_path = Path(__file__).parent.parent / DOCUMENTS_DIR
+        print(f"   Check that documents exist in: {docs_path}")
+        return False
     except Exception as e:
         print(f"❌ Error building index: {e}")
         import traceback
@@ -73,21 +68,52 @@ def _ensure_index_exists():
 _ensure_index_exists()
 
 
+def search_vector(queries: list[str], limit: int = TOP_K) -> list[list[dict]]:
+    """Vector search for several queries at once.
+
+    Returns one ranked result list per query, in the same order. The queries are
+    encoded in a single batch and searched with one batched FAISS call, which is
+    how the fan-out over alternative queries is parallelised - both the model
+    forward pass and the index scan handle the whole batch at once.
+
+    Each chunk carries `score` (cosine similarity, higher is better) and `rank`
+    (1-based within its own list).
+    """
+    if isinstance(queries, str):
+        queries = [queries]
+
+    # Ensure index exists before retrieving
+    if index is None:
+        if not _ensure_index_exists():
+            return [[] for _ in queries]
+
+    if index is None or not queries:
+        return [[] for _ in queries]
+
+    q_embs = model.encode(queries)
+    faiss.normalize_L2(q_embs)
+
+    # IndexIDMap2 returns chunk ids, which are the SQLite primary keys
+    all_scores, all_ids = index.search(q_embs, limit)
+
+    results = []
+    for row_ids, row_scores in zip(all_ids, all_scores):
+        # FAISS pads short result sets with -1
+        score_by_id = {
+            int(i): float(s) for i, s in zip(row_ids, row_scores) if int(i) >= 0
+        }
+        chunks = store.get_chunks_by_ids(list(score_by_id))
+        for rank, chunk in enumerate(chunks, start=1):
+            chunk["score"] = score_by_id[chunk["id"]]
+            chunk["rank"] = rank
+        results.append(chunks)
+
+    return results
+
+
 def retrieve(query: str):
     """Retrieve relevant chunks for a query."""
-    # Ensure index exists before retrieving
-    if index is None or len(chunks) == 0:
-        if not _ensure_index_exists():
-            return []
-    
-    if index is None or len(chunks) == 0:
-        return []
-    
-    q_emb = model.encode([query])
-    faiss.normalize_L2(q_emb)
-
-    scores, ids = index.search(q_emb, TOP_K)
-    return [chunks[i] for i in ids[0]]
+    return search_vector([query], TOP_K)[0]
 
 
 def build_prompt(query, contexts):

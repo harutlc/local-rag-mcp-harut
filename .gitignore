@@ -164,6 +164,8 @@ index.faiss
 # Pickle files (chunks cache)
 *.pkl
 chunks.pkl
+*.db
+chunks.db
 
 # Model files (if storing locally)
 *.bin

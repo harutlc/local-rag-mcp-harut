@@ -1,5 +1,5 @@
 import faiss
-import pickle
+import numpy as np
 import sys
 from pathlib import Path
 
@@ -8,16 +8,16 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from rag.ingest import ingest_documents
 from rag.chunk import chunk_documents
 from rag.embed import embed_chunks
-from config import FAISS_INDEX_PATH, CHUNKS_PATH
+from rag import store
+from config import FAISS_INDEX_PATH
 
 
 def build_index():
-    """Build FAISS index from documents."""
+    """Build the FAISS index and the SQLite chunk store from documents."""
     # Resolve paths relative to src directory
     src_dir = Path(__file__).parent.parent
     index_path = src_dir / FAISS_INDEX_PATH
-    chunks_path = src_dir / CHUNKS_PATH
-    
+
     print("📥 Loading documents...")
     documents = ingest_documents()
 
@@ -31,20 +31,24 @@ def build_index():
     print("🧠 Generating embeddings...")
     embeddings = embed_chunks(chunks)
 
+    print("🗄️ Storing chunks in SQLite...")
+    ids = store.write_chunks(chunks)
+
     print("📦 Creating FAISS index...")
     dim = embeddings.shape[1]
-    index = faiss.IndexFlatIP(dim)
+    # IndexIDMap2 so search returns chunk ids rather than row positions - the
+    # vector and full-text retrievers then share one id space.
+    index = faiss.IndexIDMap2(faiss.IndexFlatIP(dim))
     faiss.normalize_L2(embeddings)
-    index.add(embeddings)
+    index.add_with_ids(embeddings, np.array(ids, dtype=np.int64))
 
     print("💾 Saving...")
+    index_path.parent.mkdir(parents=True, exist_ok=True)
     faiss.write_index(index, str(index_path))
-    with open(chunks_path, "wb") as f:
-        pickle.dump(chunks, f)
 
     print(f"✅ Indexing complete: {len(chunks)} chunks indexed")
     print(f"   Index saved to: {index_path}")
-    print(f"   Chunks saved to: {chunks_path}")
+    print(f"   Chunks saved to: {store.db_path()}")
 
 
 if __name__ == "__main__":

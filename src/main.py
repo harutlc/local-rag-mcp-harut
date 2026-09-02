@@ -4,7 +4,7 @@ Company Knowledge Base Assistant - Main Entry Point
 """
 
 import sys
-from assistant import CompanyKBAssistant
+
 
 def main():
     """Main entry point for the assistant."""
@@ -13,7 +13,11 @@ def main():
         from rag.build_index import build_index
         build_index()
         return
-    
+
+    # Imported here, not at module level: importing the assistant loads the
+    # index (building it if missing), which would double-build above.
+    from assistant import CompanyKBAssistant
+
     # Interactive Q&A mode
     assistant = CompanyKBAssistant()
     
