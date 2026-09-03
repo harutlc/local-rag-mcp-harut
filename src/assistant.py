@@ -1,6 +1,7 @@
 import json
 import ollama
 import sys
+import time
 from pathlib import Path
 from rich.console import Console
 from rich.markdown import Markdown
@@ -11,7 +12,7 @@ from rag.query import retrieve, build_prompt, ask_llm
 from rag.search import hybrid_retrieve_sync
 from rag.fallback import generate_fallback_sync
 from mcp.client import MCPClient
-from config import OLLAMA_MODEL, USE_HYBRID_RETRIEVAL
+from config import OLLAMA_MODEL, USE_HYBRID_RETRIEVAL, DEBUG_PROMPT
 
 class CompanyKBAssistant:
     """Company Knowledge Base Assistant combining RAG and MCP."""
@@ -121,13 +122,18 @@ Your JSON response:"""
     
     def query(self, user_query: str, verbose=False):
         """Answer a question using RAG and optionally MCP tools."""
+        timings = {}
+        query_start = time.perf_counter()
+
         # Step 1: Retrieve from RAG - hybrid (expansion + vector + full-text,
         # fused with RRF) or the plain single vector search.
+        step_start = time.perf_counter()
         expansion = None
         if USE_HYBRID_RETRIEVAL:
             contexts, expansion = hybrid_retrieve_sync(user_query)
         else:
             contexts = retrieve(user_query)
+        timings["retrieval"] = time.perf_counter() - step_start
 
         # Step 1b: A small model can fail to produce usable keywords - bad JSON,
         # a timeout, or a well-formed but empty reply. That must never cost the
@@ -148,13 +154,17 @@ Your JSON response:"""
                     print(f"↩️  Query expansion failed ({reason}) "
                           f"and retrieval found nothing")
                     print("   Generating a fallback message")
+                step_start = time.perf_counter()
                 fallback = generate_fallback_sync(user_query, expansion.error)
+                timings["fallback_generation"] = time.perf_counter() - step_start
+                timings["total"] = time.perf_counter() - query_start
                 return {
                     "answer": fallback.render(),
                     "sources": [],
                     "mcp_used": False,
                     "mcp_tool": None,
                     "fallback": True,
+                    "timings": timings,
                 }
 
         if verbose:
@@ -168,43 +178,78 @@ Your JSON response:"""
                 print(f"   ranked by RRF (searches agreeing): {agreement}")
         
         # Step 2: Ask LLM if MCP tools are needed
+        step_start = time.perf_counter()
         mcp_result = None
         mcp_tool_used = None
         tool_name, tool_args = self._llm_decide_mcp_usage(user_query, contexts)
-        
+        timings["mcp_decision"] = time.perf_counter() - step_start
+
         if tool_name:
             if verbose:
                 print(f"🔧 LLM decided to use MCP tool: {tool_name} with args: {tool_args}")
+            step_start = time.perf_counter()
             mcp_result = self._call_mcp_tool(tool_name, tool_args)
+            timings["mcp_tool_call"] = time.perf_counter() - step_start
             mcp_tool_used = tool_name
             if verbose and mcp_result:
                 print(f"✅ MCP tool returned result (length: {len(mcp_result)} chars)")
-        
+
         # Step 3: Build prompt with RAG context
         prompt = build_prompt(user_query, contexts)
-        
+
         # Step 4: Add MCP result if available
         if mcp_result:
             prompt += f"\n\n<additional_info_from_mcp_tool>\n{mcp_result}\n</additional_info_from_mcp_tool>\n"
-        
+
+        if DEBUG_PROMPT:
+            print(f"\n🐛 DEBUG:prompt\n{'-' * 60}\n{prompt}\n{'-' * 60}")
+
         # Step 5: Generate answer
+        step_start = time.perf_counter()
         answer = ask_llm(prompt)
-        
+        timings["llm_generation"] = time.perf_counter() - step_start
+
         # Step 6: Prepare response with sources
         sources = [c["source"] for c in contexts] if contexts else []
-        
+
+        timings["total"] = time.perf_counter() - query_start
+
         return {
             "answer": answer,
             "sources": sources,
             "mcp_used": mcp_result is not None,
             "mcp_tool": mcp_tool_used,
             "fallback": False,
+            "timings": timings,
         }
     
     def close(self):
         """Clean up resources."""
         if self.mcp:
             self.mcp.close()
+
+
+STEP_LABELS = {
+    "retrieval": "Retrieval",
+    "mcp_decision": "MCP decision",
+    "mcp_tool_call": "MCP tool call",
+    "llm_generation": "LLM generation",
+    "fallback_generation": "Fallback generation",
+    "total": "Total",
+}
+
+
+def print_timing_summary(timings: dict):
+    """Print a breakdown of how long each step of a query took."""
+    if not timings:
+        return
+    print("\n⏱️  Timing:")
+    for key, label in STEP_LABELS.items():
+        if key == "total" or key not in timings:
+            continue
+        print(f"  {label}: {timings[key]:.2f}s")
+    if "total" in timings:
+        print(f"  {STEP_LABELS['total']}: {timings['total']:.2f}s")
 
 
 if __name__ == "__main__":
@@ -237,7 +282,9 @@ if __name__ == "__main__":
             
             if result["mcp_used"]:
                 print(f"\n🔧 Used MCP tool: {result['mcp_tool']}")
-            
+
+            print_timing_summary(result.get("timings"))
+
             print("─" * 60 + "\n")
     
     finally:

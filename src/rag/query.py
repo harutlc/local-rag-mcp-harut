@@ -181,5 +181,8 @@ if __name__ == "__main__":
         print(answer)
         if sources:
             print("\n📚 Sources:")
+            seen_sources = set()
             for src in sources:
-                print(f"  - {src['source']}")
+                if src["source"] not in seen_sources:
+                    print(f"  - {src['source']}")
+                    seen_sources.add(src["source"])

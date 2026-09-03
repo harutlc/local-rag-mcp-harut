@@ -51,29 +51,19 @@ class QueryExpansion(BaseModel):
 
 
 SYSTEM_PROMPT = (
-    "You rewrite search queries for a company knowledge base containing internal "
-    "policies, procedures and technical documentation. You expand a question into "
-    "alternative phrasings and search keywords so that a semantic and a full-text "
-    "search can both find the relevant passages. Respond with JSON only."
+    "You rewrite search queries for a company knowledge base, expanding a "
+    "question into phrasings and keywords for search. JSON only."
 )
 
 
 def _build_user_prompt(query: str) -> str:
-    return f"""User question:
-{query}
+    return f"""Question: {query}
 
 Generate:
-- alternative_queries: {EXPANSION_NUM_ALTERNATIVES} alternative phrasings of the
-  question. Each must be a standalone, searchable question or phrase that could
-  be sent to a search engine on its own. Use synonyms and the domain terms a
-  policy document would actually use. Do not repeat the original wording.
-- keywords: {EXPANSION_NUM_KEYWORDS} short keywords or key phrases for full-text
-  search. Include synonyms and likely document terminology. Each keyword is one
-  to three ordinary English words separated by single spaces, written exactly as
-  they would appear in a sentence in the document, for example:
-  "annual leave", "paid time off", "accrual rate".
+- alternative_queries: {EXPANSION_NUM_ALTERNATIVES} standalone rephrasings, using synonyms/domain terms.
+- keywords: {EXPANSION_NUM_KEYWORDS} short (1-3 word) search terms, e.g. "annual leave".
 
-Do not answer the question. Only produce search terms."""
+Search terms only, no answer."""
 
 
 def _normalize(values: list[str], limit: int, exclude: set[str] | None = None) -> list[str]:

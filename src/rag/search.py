@@ -10,7 +10,7 @@ from rag import store
 from rag.query import search_vector
 from rag.query_expansion import QueryExpansion, expand_query
 from rag.rerank import reciprocal_rank_fusion
-from config import TOP_K, FTS_TOP_K
+from config import TOP_K, FTS_TOP_K, DEBUG_RETRIEVAL
 
 
 class RankedList(BaseModel):
@@ -49,6 +49,22 @@ async def _fts_list(name: str, query: str, terms: list[str], limit: int) -> Rank
     """Run one full-text search in a worker thread and label it."""
     results = await store.search_fts_async(terms, limit)
     return RankedList(name=name, kind="fts", query=query, results=results)
+
+
+def _print_debug_retrieval(expansion: QueryExpansion, ranked_lists: list[RankedList]):
+    """Verbose retrieval trace: expansion output plus every search's hits.
+
+    Gated behind config.DEBUG_RETRIEVAL - off by default since it prints every
+    chunk text preview for every vector and FTS search fired for the query.
+    """
+    print(f"\n🐛 DEBUG:retrieval  query={expansion.query!r}")
+    print(f"   alternative_queries: {expansion.alternative_queries}")
+    print(f"   keywords: {expansion.keywords}")
+    for rl in ranked_lists:
+        print(f"   [{rl.kind}] {rl.name} query={rl.query!r} -> {len(rl.results)} hits")
+        for c in rl.results:
+            preview = " ".join(c["text"].split())[:80]
+            print(f"       id={c['id']:<4} {c['source']}#{c['chunk_id']}  {preview}...")
 
 
 async def hybrid_search(
@@ -92,6 +108,9 @@ async def hybrid_search(
     ranked_lists = []
     for item in completed:
         ranked_lists.extend(item) if isinstance(item, list) else ranked_lists.append(item)
+
+    if DEBUG_RETRIEVAL:
+        _print_debug_retrieval(expansion, ranked_lists)
 
     return expansion, ranked_lists
 

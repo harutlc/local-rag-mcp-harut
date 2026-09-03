@@ -46,6 +46,14 @@ USE_HYBRID_RETRIEVAL = True
 # search's first place. 60 is the value from the original RRF paper.
 RRF_K = 60
 
+# Print the expansion (alternative queries, keywords) and every vector/FTS
+# search's hit count and chunks before rank fusion. Off by default - verbose.
+DEBUG_RETRIEVAL = True
+
+# Print the final prompt sent to the LLM to generate the answer (RAG context,
+# MCP tool output if any, and the question). Off by default - verbose.
+DEBUG_PROMPT = True
+
 # Query expansion configuration
 # Base host for the `ollama` python package client (OLLAMA_URL above is the raw
 # /api/generate endpoint still used by rag/query.py)
