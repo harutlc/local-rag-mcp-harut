@@ -1,7 +1,7 @@
 {
   "branch": "main",
   "commit": "a6583d4",
-  "timestamp": "2026-09-03T07:16:53.885216+00:00",
+  "timestamp": "2026-09-03T07:43:03.691649+00:00",
   "config": {
     "ollama_model": "qwen3:0.6b",
     "embedding_model": "all-MiniLM-L6-v2",
@@ -16,19 +16,19 @@
     "num_errors": 0,
     "num_fallback": 0,
     "num_mcp_used": 3,
-    "avg_total_seconds": 7.242816045699874,
-    "max_total_seconds": 10.6149932089902
+    "avg_total_seconds": 5.09196125830058,
+    "max_total_seconds": 6.992882833001204
   },
   "results": [
     {
       "id": "eu-armenia-trade-measures",
       "query": "What trade measures did the EU announce for Armenia and why?",
-      "answer": "The EU announced temporary trade liberalization measures for Armenia, including a suspension of import duties and coverage of 80% of Armenia's exports (fresh fruits, vegetables, plants, beverages, and spirits). These measures are conditional on Armenia complying with rules of origin and cooperating with the EU, with the goal of supporting Armenia's economy and promoting closer cooperation.",
+      "answer": "The EU announced temporary trade liberalization measures for Armenia, which include suspending import duties and covering approximately 80% of Armenia's exports (including 99% of fresh fruit, vegetables, and beverages, as well as 91% of beverages and spirits). These measures are intended to support Armenia's economy and address Russia's trade restrictions. The conditions for implementation are contingent on Armenia complying with rules of origin, administrative cooperation with the EU, and refraining from introducing trade restrictions on EU imports.",
       "sources": [
         "docs/news.md",
+        "docs/news.md",
         "docs/news4.txt",
-        "docs/news3.txt",
-        "docs/news2.txt",
+        "docs/news4.txt",
         "docs/news4.txt"
       ],
       "contexts": [],
@@ -37,19 +37,19 @@
       "mcp_tool": null,
       "fallback": false,
       "timings": {
-        "total": 10.6149932089902
+        "total": 5.642106250015786
       },
       "error": null
     },
     {
       "id": "eu-armenia-export-coverage",
       "query": "What percentage of Armenia's exports are covered by the EU's suspended import duties?",
-      "answer": "The percentage of Armenia's exports covered by the EU's suspended import duties is **80%**.",
+      "answer": "The EU's suspended import duties cover approximately 80% of Armenia's exports, including 99% of its fresh fruit, vegetables, and plants and over 91% of its beverages and spirits.",
       "sources": [
+        "docs/news.md",
         "docs/news.md",
         "docs/news4.txt",
         "docs/news3.txt",
-        "docs/news2.txt",
         "docs/news4.txt"
       ],
       "contexts": [],
@@ -58,82 +58,19 @@
       "mcp_tool": null,
       "fallback": false,
       "timings": {
-        "total": 6.171696875011548
+        "total": 5.0014065830037
       },
       "error": null
     },
     {
       "id": "khachatryan-confiscation-amount",
       "query": "How much money and how many properties are prosecutors trying to confiscate from Gagik Khachatryan?",
-      "answer": "Prosecutors are trying to confiscate **$75 million** in total, including **$1.45 million in bonds**, **$24 million in a loan**, and **$49 million in cash** (summing to approximately $75 million). Additionally, they are seeking **193 real estate properties**, with **46 apartments in Yerevan** and **dozens of properties outside the capital**.",
+      "answer": "The prosecutors are trying to confiscate approximately **$75 million** in assets (including bonds, loans, and cash) and **193 real estate properties**, including 46 downtown Yerevan apartments and others outside the capital.",
       "sources": [
         "docs/news2.txt",
-        "docs/news3.txt",
-        "docs/news4.txt",
-        "docs/news.md",
-        "docs/news4.txt"
-      ],
-      "contexts": [],
-      "expansion": null,
-      "mcp_used": false,
-      "mcp_tool": null,
-      "fallback": false,
-      "timings": {
-        "total": 7.951538082998013
-      },
-      "error": null
-    },
-    {
-      "id": "khachatryan-government-roles",
-      "query": "What government positions did Gagik Khachatryan hold before his arrest?",
-      "answer": "Gagik Khachatryan held the following government positions before his arrest:  \n1. **Chairman of Armenia\u2019s State Revenue Committee** from 2008 to 2014.  \n2. **Minister of Finance** from 2014 to 2016.",
-      "sources": [
+        "docs/news2.txt",
         "docs/news2.txt",
         "docs/news3.txt",
-        "docs/news4.txt",
-        "docs/news.md",
-        "docs/news4.txt"
-      ],
-      "contexts": [],
-      "expansion": null,
-      "mcp_used": false,
-      "mcp_tool": null,
-      "fallback": false,
-      "timings": {
-        "total": 5.491702874976909
-      },
-      "error": null
-    },
-    {
-      "id": "tsarukyan-arrest-reason",
-      "query": "Why was Gagik Tsarukyan arrested and what happened to his businesses afterward?",
-      "answer": "Gagik Tsarukyan was arrested on Monday after being charged with large-scale money laundering and fraud. The charges were related to his business activities, and after his arrest, his businesses, including operations at AraratCement, Noy, and Multi Wellness, were suspended. Additionally, there were reports of financial difficulties and legal consequences for his companies.",
-      "sources": [
-        "docs/news3.txt",
-        "docs/news2.txt",
-        "docs/news4.txt",
-        "docs/news.md",
-        "docs/news4.txt"
-      ],
-      "contexts": [],
-      "expansion": null,
-      "mcp_used": false,
-      "mcp_tool": null,
-      "fallback": false,
-      "timings": {
-        "total": 8.214243417023681
-      },
-      "error": null
-    },
-    {
-      "id": "tsarukyan-affected-businesses",
-      "query": "Which businesses owned by Tsarukyan have suspended operations?",
-      "answer": "The businesses owned by Gagik Tsarukyan who have suspended operations are AraratCement and Noy brandy factory, as well as Multi Wellness recreational and fitness center.",
-      "sources": [
-        "docs/news3.txt",
-        "docs/news4.txt",
-        "docs/news2.txt",
-        "docs/news.md",
         "docs/news4.txt"
       ],
       "contexts": [],
@@ -142,20 +79,20 @@
       "mcp_tool": "read_document",
       "fallback": false,
       "timings": {
-        "total": 7.1529599580098875
+        "total": 4.952120541973272
       },
       "error": null
     },
     {
-      "id": "manukyan-arrest",
-      "query": "Who is Aregnaz Manukyan and why was she arrested?",
-      "answer": "I don't have that information in the knowledge base.",
+      "id": "khachatryan-government-roles",
+      "query": "What government positions did Gagik Khachatryan hold before his arrest?",
+      "answer": "Gagik Khachatryan held the following government positions before his arrest:  \n- Chairman of Armenia\u2019s State Revenue Committee (2008\u20132014)  \n- Minister of Finance (2014\u20132016)  \n\nThese positions were under the then-President Serzh Sargsyan.",
       "sources": [
         "docs/news2.txt",
         "docs/news3.txt",
-        "docs/news4.txt",
-        "docs/news.md",
-        "docs/news4.txt"
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt"
       ],
       "contexts": [],
       "expansion": null,
@@ -163,20 +100,20 @@
       "mcp_tool": null,
       "fallback": false,
       "timings": {
-        "total": 5.105680457985727
+        "total": 4.09861520800041
       },
       "error": null
     },
     {
-      "id": "mcentee-quote",
-      "query": "What did Helen McEntee say about the EU's decision regarding Armenia?",
-      "answer": "Helen McEntee said, \"Europe stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners,\" regarding the EU's decision to implement temporary trade liberalization measures for Armenia.",
+      "id": "tsarukyan-arrest-reason",
+      "query": "Why was Gagik Tsarukyan arrested and what happened to his businesses afterward?",
+      "answer": "Gagik Tsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering, fraud, and embezzlement. His arrest was linked to an investigation into Andranik Tevanyan, a former parliament member linked to the Prosperous Armenia party. After his arrest, his businesses, including AraratCement, Noy, and Multi Wellness, were suspended, with operations halted at these facilities. The entrances to his operations were sealed, and workers faced financial difficulties, leading to the suspension of operations at other major businesses owned by Tsarukyan.",
       "sources": [
-        "docs/news.md",
-        "docs/news4.txt",
-        "docs/news2.txt",
         "docs/news3.txt",
-        "docs/news4.txt"
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt"
       ],
       "contexts": [],
       "expansion": null,
@@ -184,17 +121,17 @@
       "mcp_tool": null,
       "fallback": false,
       "timings": {
-        "total": 6.951510874991072
+        "total": 6.693653374997666
       },
       "error": null
     },
     {
-      "id": "list-documents",
-      "query": "What documents are available in the knowledge base?",
-      "answer": "The knowledge base contains information about various documents, including news about Gagik Khachatryan's arrest, his assets, and the legal proceedings, as well as news related to Armenian politics, trade liberalization, and railway concessions. The provided context is a single text containing all these documents.",
+      "id": "tsarukyan-affected-businesses",
+      "query": "Which businesses owned by Tsarukyan have suspended operations?",
+      "answer": "The businesses owned by Gagik Tsarukyan that have suspended operations are AraratCement, the Noy brandy factory, and the Multi Wellness recreational and fitness center.",
       "sources": [
-        "docs/news2.txt",
-        "docs/news.md",
+        "docs/news3.txt",
+        "docs/news4.txt",
         "docs/news3.txt",
         "docs/news4.txt",
         "docs/news4.txt"
@@ -202,10 +139,73 @@
       "contexts": [],
       "expansion": null,
       "mcp_used": true,
+      "mcp_tool": "read_document",
+      "fallback": false,
+      "timings": {
+        "total": 4.177563250006642
+      },
+      "error": null
+    },
+    {
+      "id": "manukyan-arrest",
+      "query": "Who is Aregnaz Manukyan and why was she arrested?",
+      "answer": "Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to an investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 4.85174279200146
+      },
+      "error": null
+    },
+    {
+      "id": "mcentee-quote",
+      "query": "What did Helen McEntee say about the EU's decision regarding Armenia?",
+      "answer": "Helen McEntee said that the EU's decision to support Armenia's economy and promote closer cooperation with the European Union sends a clear message that when faced with economic coercion, the EU will respond, creating new opportunities for Armenia.",
+      "sources": [
+        "docs/news.md",
+        "docs/news.md",
+        "docs/news4.txt",
+        "docs/news4.txt",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 6.992882833001204
+      },
+      "error": null
+    },
+    {
+      "id": "list-documents",
+      "query": "What documents are available in the knowledge base?",
+      "answer": "The documents available in the knowledge base are the content provided in the context. Specifically, it includes details about Armenia's trade policies, the EU's temporary trade liberalization measures, and the ongoing legal proceedings involving Gagik Khachatryan. No additional documents were mentioned or referenced in the context.",
+      "sources": [
+        "docs/news.md",
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news.md"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": true,
       "mcp_tool": "list_documents",
       "fallback": false,
       "timings": {
-        "total": 7.379123291000724
+        "total": 4.335166832985124
       },
       "error": null
     },
@@ -215,18 +215,18 @@
       "answer": "I don't have that information in the knowledge base.",
       "sources": [
         "docs/news3.txt",
-        "docs/news.md",
-        "docs/news4.txt",
         "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news.md",
         "docs/news4.txt"
       ],
       "contexts": [],
       "expansion": null,
-      "mcp_used": true,
-      "mcp_tool": "list_documents",
+      "mcp_used": false,
+      "mcp_tool": null,
       "fallback": false,
       "timings": {
-        "total": 7.394711416010978
+        "total": 4.174354917020537
       },
       "error": null
     }

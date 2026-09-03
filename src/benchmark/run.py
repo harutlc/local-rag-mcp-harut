@@ -107,10 +107,15 @@ def run_benchmark() -> dict:
 
 
 def save_run(run: dict) -> Path:
+    """Write the run to a fixed, branch-named file - main.json or hybrid.json.
+
+    Only two branches are ever compared here, so each run overwrites its
+    branch's file rather than accumulating a new timestamped file every time
+    (the run's own "timestamp" field still records when it happened).
+    """
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    ts = run["timestamp"].replace(":", "").replace("+00:00", "Z")
-    branch = (run["branch"] or "unknown").replace("/", "-")
-    path = RESULTS_DIR / f"{branch}__{run['commit'] or 'nogit'}__{ts}.json"
+    name = "main" if run["branch"] == "main" else "hybrid"
+    path = RESULTS_DIR / f"{name}.json"
     path.write_text(json.dumps(run, indent=2))
     return path
 
