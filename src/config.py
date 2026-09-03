@@ -41,7 +41,7 @@ FALLBACK_TEMPERATURE = 0.4
 # Use the full hybrid pipeline (query expansion -> parallel vector + FTS ->
 # pool/dedupe -> RRF) instead of a single vector search. Costs one extra LLM
 # call per question for the expansion; set False to fall back to vector-only.
-USE_HYBRID_RETRIEVAL = True
+USE_HYBRID_RETRIEVAL = False
 
 # Reciprocal Rank Fusion: damping constant. Higher values flatten the advantage
 # of top positions, so agreement across searches matters more than any single
@@ -66,6 +66,6 @@ OLLAMA_HOST = "http://localhost:11434"
 EXPANSION_MODEL = "qwen3:0.6b"
 EXPANSION_NUM_ALTERNATIVES = 3
 EXPANSION_NUM_KEYWORDS = 6
-EXPANSION_TEMPERATURE = 0.2
+EXPANSION_TEMPERATURE = 0.1
 # seconds
 EXPANSION_TIMEOUT = 30
