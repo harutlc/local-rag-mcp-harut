@@ -1,0 +1,882 @@
+{
+  "branch": "hybrid-retrieval",
+  "commit": "4d055dd",
+  "timestamp": "2026-09-03T07:03:50.491978+00:00",
+  "config": {
+    "ollama_model": "qwen2.5:3b",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "expansion_model": "qwen2.5:3b",
+    "use_hybrid_retrieval": true,
+    "top_k": 5,
+    "fts_top_k": 10,
+    "rrf_k": 60
+  },
+  "summary": {
+    "num_queries": 10,
+    "num_errors": 0,
+    "num_fallback": 0,
+    "num_mcp_used": 10,
+    "avg_total_seconds": 9.313525104097788,
+    "max_total_seconds": 14.637783916987246
+  },
+  "results": [
+    {
+      "id": "eu-armenia-trade-measures",
+      "query": "What trade measures did the EU announce for Armenia and why?",
+      "answer": "The European Union announced temporary trade liberalization measures for Armenian products to support Armenia's economy following trade restrictions imposed by Russia earlier this year. The measure involves a temporary suspension of import duties and will cover approximately 80% of Armenia\u2019s exports, including fresh fruit, vegetables, and plants, as well as beverages and spirits.",
+      "sources": [
+        "docs/news.md",
+        "docs/news.md",
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news3.txt"
+      ],
+      "contexts": [
+        {
+          "id": 0,
+          "source": "docs/news.md",
+          "chunk_id": 0,
+          "text": "The European Union on Wednesday announced temporary trade liberalization measures for Armenian products to support Armenia\u2019s economy following trade restrictions imposed by Russia earlier this year.\n\nThe measure involves a temporary suspension of import duties and will cover approximately 80% of Armenia\u2019s exports, including 99% of its fresh fruit, vegetables and plants and more than 91% of its exports of beverages and spirits, the European Council said in a statement. The measures will apply for two years.\n\n\u201cEurope stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners,\u201d Helen McEntee, Ireland's minister of foreign affairs and defense, said, commenting on the decision.\n\nThe Council\u2019s statement added that the arrangements are conditional on Armenia complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms,",
+          "score": null,
+          "rrf_score": 0.13114754098360656,
+          "match_count": 8
+        },
+        {
+          "id": 1,
+          "source": "docs/news.md",
+          "chunk_id": 1,
+          "text": " complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms, the rule of law, and respect to human rights.\n\nThe measure is now subject to approval by the European Parliament, and the Council said it is expected to be adopted without amendments later this month.\n\nAlso read: Armenia faces sweeping Russian import restrictions across industries\n\nMoscow gradually introduced broad restrictions targeting a large share of Armenia\u2019s exports starting in May. The measures affected agricultural produce, alcoholic beverages, flowers and mineral water, despite Armenia\u2019s membership in the Russian-led Eurasian Economic Union.\n\nWhile Russia has described the measures as technical and linked them to alleged systemic violations of product quality, many economists have characterized them as a trade war. The restrictions have coincided with increased political pressure on Yerevan.",
+          "score": null,
+          "rrf_score": 0.12903225806451613,
+          "match_count": 8
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.12293031753633159,
+          "match_count": 8
+        },
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.12161279447967809,
+          "match_count": 8
+        },
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.09401327838827839,
+          "match_count": 6
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "EU Armenia trade policy updates",
+          "New EU measures for Armenia unveiled",
+          "Armenia: EU trade sanctions and responses"
+        ],
+        "keywords": [
+          "EU Armenia measures",
+          "Armenia trade sanctions",
+          "EU Armenia policy",
+          "EU Armenia response",
+          "Armenia EU sanctions",
+          "Armenia EU policy"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 7.966172624990577,
+        "mcp_decision": 1.9450855829927605,
+        "mcp_tool_call": 0.1566025000065565,
+        "llm_generation": 4.569845999998506,
+        "total": 14.637783916987246
+      },
+      "error": null
+    },
+    {
+      "id": "eu-armenia-export-coverage",
+      "query": "What percentage of Armenia's exports are covered by the EU's suspended import duties?",
+      "answer": "The EU's suspended import duties cover approximately 80% of Armenia's exports.",
+      "sources": [
+        "docs/news.md",
+        "docs/news.md",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt"
+      ],
+      "contexts": [
+        {
+          "id": 0,
+          "source": "docs/news.md",
+          "chunk_id": 0,
+          "text": "The European Union on Wednesday announced temporary trade liberalization measures for Armenian products to support Armenia\u2019s economy following trade restrictions imposed by Russia earlier this year.\n\nThe measure involves a temporary suspension of import duties and will cover approximately 80% of Armenia\u2019s exports, including 99% of its fresh fruit, vegetables and plants and more than 91% of its exports of beverages and spirits, the European Council said in a statement. The measures will apply for two years.\n\n\u201cEurope stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners,\u201d Helen McEntee, Ireland's minister of foreign affairs and defense, said, commenting on the decision.\n\nThe Council\u2019s statement added that the arrangements are conditional on Armenia complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms,",
+          "score": null,
+          "rrf_score": 0.13061872025383395,
+          "match_count": 8
+        },
+        {
+          "id": 1,
+          "source": "docs/news.md",
+          "chunk_id": 1,
+          "text": " complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms, the rule of law, and respect to human rights.\n\nThe measure is now subject to approval by the European Parliament, and the Council said it is expected to be adopted without amendments later this month.\n\nAlso read: Armenia faces sweeping Russian import restrictions across industries\n\nMoscow gradually introduced broad restrictions targeting a large share of Armenia\u2019s exports starting in May. The measures affected agricultural produce, alcoholic beverages, flowers and mineral water, despite Armenia\u2019s membership in the Russian-led Eurasian Economic Union.\n\nWhile Russia has described the measures as technical and linked them to alleged systemic violations of product quality, many economists have characterized them as a trade war. The restrictions have coincided with increased political pressure on Yerevan.",
+          "score": null,
+          "rrf_score": 0.12904065204435378,
+          "match_count": 8
+        },
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.12449601336139113,
+          "match_count": 8
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.1229017924447029,
+          "match_count": 8
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.10678047442753326,
+          "match_count": 7
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Armenia EU trade tariffs share",
+          "Armenia EU import duties impact",
+          "Armenia EU suspended tariffs effect"
+        ],
+        "keywords": [
+          "Armenia exports",
+          "EU import duties",
+          "suspended tariffs",
+          "trade share",
+          "Armenia EU",
+          "trade impact"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.8640600420185365,
+        "mcp_decision": 1.894510625017574,
+        "mcp_tool_call": 0.01965441700303927,
+        "llm_generation": 2.2149712079844903,
+        "total": 6.993336665997049
+      },
+      "error": null
+    },
+    {
+      "id": "khachatryan-confiscation-amount",
+      "query": "How much money and how many properties are prosecutors trying to confiscate from Gagik Khachatryan?",
+      "answer": "Prosecutors are trying to confiscate approximately $75 million in cash and numerous assets belonging to Gagik Khachatryan, including bonds worth roughly $1.45 million, a loan receivable worth more than $24 million, and approximately $49 million in cash, bringing the total to around $75 million. Additionally, prosecutors are seeking the confiscation of 193 real estate properties belonging to Khachatryan, including 46 apartments in downtown Yerevan, the country\u2019s most expensive area for real estate. The properties could be worth millions of dollars and also include dozens of houses and apartments outside the capital.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news3.txt"
+      ],
+      "contexts": [
+        {
+          "id": 7,
+          "source": "docs/news2.txt",
+          "chunk_id": 1,
+          "text": " Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of the Helsinki Citizens\u2019 Assembly-Vanadzor NGO, has argued that bringing a person into a courtroom on a stretcher amounts to degrading treatment.\n\nThe prosecution is now seeking to confiscate numerous assets belonging to Khachatryan, including bonds worth roughly $1.45 million, a loan receivable worth more than $24 million, and approximately $49 million in cash, bringing the total to around $75 million.\n\nIn addition, prosecutors are seeking the confiscation of 193 real estate properties belonging to Khachatryan, including 46 apartments in downtown Yerevan, the country\u2019s most expensive area for real estate. The properties could be worth millions of dollars and also include dozens of houses and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in",
+          "score": null,
+          "rrf_score": 0.1462357197418012,
+          "match_count": 9
+        },
+        {
+          "id": 6,
+          "source": "docs/news2.txt",
+          "chunk_id": 0,
+          "text": "Armenian authorities are seeking to confiscate roughly $75 million and hundreds of real estate properties from former finance minister and tax chief Gagik Khachatryan.\n\nKhachatryan was arrested on Tuesday and sent into pre-trial detention on Wednesday on charges of money laundering, bribery, and embezzlement. The accusations published by the prosecution on Tuesday include accepting bribes in the form of luxury apartments, misappropriating public funds, and embezzling state-owned real estate.\n\nOn Tuesday, Khachatryan\u2019s legal team released footage of his arrest showing law enforcement officers carrying the 70-year-old former official from his bed on a stretcher. Khachatryan appeared to be groaning in pain.\n\nThe prosecutor\u2019s statement acknowledged that Khachatryan has an unspecified medical condition, but said medical professionals had determined that it was not serious enough to warrant canceling his detention. It also said Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of",
+          "score": null,
+          "rrf_score": 0.14493045587704498,
+          "match_count": 9
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.14267167644183773,
+          "match_count": 9
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.14089627890031114,
+          "match_count": 9
+        },
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.10614450908568555,
+          "match_count": 7
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Quantum of assets and real estate sought by prosecutors against Gagik Khachatryan",
+          "Value and volume of properties sought by legal authorities from Gagik Khachatryan",
+          "Estimate of funds and properties seized by prosecutors from Gagik Khachatryan"
+        ],
+        "keywords": [
+          "Prosecutors",
+          "Gagik Khachatryan",
+          "Assets",
+          "Properties",
+          "Confiscation",
+          "Legal Authorities"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.919075582991354,
+        "mcp_decision": 2.055664249986876,
+        "mcp_tool_call": 0.004698125005234033,
+        "llm_generation": 6.441418625006918,
+        "total": 11.420972833002452
+      },
+      "error": null
+    },
+    {
+      "id": "khachatryan-government-roles",
+      "query": "What government positions did Gagik Khachatryan hold before his arrest?",
+      "answer": "Based on the provided context, Gagik Khachatryan held the following government positions before his arrest:\n\n1. Chairman of Armenia's State Revenue Committee from 2008 to 2014\n2. Minister of Finance from 2014 to 2016\n3. Both roles were under then-president Serzh Sargsyan.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt"
+      ],
+      "contexts": [
+        {
+          "id": 6,
+          "source": "docs/news2.txt",
+          "chunk_id": 0,
+          "text": "Armenian authorities are seeking to confiscate roughly $75 million and hundreds of real estate properties from former finance minister and tax chief Gagik Khachatryan.\n\nKhachatryan was arrested on Tuesday and sent into pre-trial detention on Wednesday on charges of money laundering, bribery, and embezzlement. The accusations published by the prosecution on Tuesday include accepting bribes in the form of luxury apartments, misappropriating public funds, and embezzling state-owned real estate.\n\nOn Tuesday, Khachatryan\u2019s legal team released footage of his arrest showing law enforcement officers carrying the 70-year-old former official from his bed on a stretcher. Khachatryan appeared to be groaning in pain.\n\nThe prosecutor\u2019s statement acknowledged that Khachatryan has an unspecified medical condition, but said medical professionals had determined that it was not serious enough to warrant canceling his detention. It also said Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of",
+          "score": null,
+          "rrf_score": 0.1462273257619635,
+          "match_count": 9
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.1270329169919334,
+          "match_count": 8
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.12507783618637663,
+          "match_count": 8
+        },
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.10869202482105708,
+          "match_count": 7
+        },
+        {
+          "id": 7,
+          "source": "docs/news2.txt",
+          "chunk_id": 1,
+          "text": " Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of the Helsinki Citizens\u2019 Assembly-Vanadzor NGO, has argued that bringing a person into a courtroom on a stretcher amounts to degrading treatment.\n\nThe prosecution is now seeking to confiscate numerous assets belonging to Khachatryan, including bonds worth roughly $1.45 million, a loan receivable worth more than $24 million, and approximately $49 million in cash, bringing the total to around $75 million.\n\nIn addition, prosecutors are seeking the confiscation of 193 real estate properties belonging to Khachatryan, including 46 apartments in downtown Yerevan, the country\u2019s most expensive area for real estate. The properties could be worth millions of dollars and also include dozens of houses and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in",
+          "score": null,
+          "rrf_score": 0.07937307987711213,
+          "match_count": 5
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Gagik Khachatryan prior governmental roles",
+          "Past offices held by Gagik Khachatryan",
+          "Gagik Khachatryan previous political appointments"
+        ],
+        "keywords": [
+          "Gagik Khachatryan",
+          "government positions",
+          "arrested officials",
+          "past offices",
+          "political career",
+          "governmental roles"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.639396708982531,
+        "mcp_decision": 2.0898236659995746,
+        "mcp_tool_call": 0.008080708998022601,
+        "llm_generation": 5.0528329579974525,
+        "total": 9.790225250006188
+      },
+      "error": null
+    },
+    {
+      "id": "tsarukyan-arrest-reason",
+      "query": "Why was Gagik Tsarukyan arrested and what happened to his businesses afterward?",
+      "answer": "Gagik Tsarukyan was arrested on Monday and placed in two months of pre-trial detention. He was charged with large-scale money laundering and fraud. Following his arrest, his businesses were suspended, including the AraratCement factory in the southwestern Ararat Province and the Noy brandy factory in central Yerevan. The Multi Wellness recreational and fitness center was also affected. Operations at these businesses were suspended.",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt"
+      ],
+      "contexts": [
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.1462273257619635,
+          "match_count": 9
+        },
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.14570689901202857,
+          "match_count": 9
+        },
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.14337717613927292,
+          "match_count": 9
+        },
+        {
+          "id": 6,
+          "source": "docs/news2.txt",
+          "chunk_id": 0,
+          "text": "Armenian authorities are seeking to confiscate roughly $75 million and hundreds of real estate properties from former finance minister and tax chief Gagik Khachatryan.\n\nKhachatryan was arrested on Tuesday and sent into pre-trial detention on Wednesday on charges of money laundering, bribery, and embezzlement. The accusations published by the prosecution on Tuesday include accepting bribes in the form of luxury apartments, misappropriating public funds, and embezzling state-owned real estate.\n\nOn Tuesday, Khachatryan\u2019s legal team released footage of his arrest showing law enforcement officers carrying the 70-year-old former official from his bed on a stretcher. Khachatryan appeared to be groaning in pain.\n\nThe prosecutor\u2019s statement acknowledged that Khachatryan has an unspecified medical condition, but said medical professionals had determined that it was not serious enough to warrant canceling his detention. It also said Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of",
+          "score": null,
+          "rrf_score": 0.12476724664224664,
+          "match_count": 8
+        },
+        {
+          "id": 5,
+          "source": "docs/news3.txt",
+          "chunk_id": 3,
+          "text": " a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.1077138346727899,
+          "match_count": 7
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Tsarukyan businesses post-arrest status",
+          "Gagik Tsarukyan enterprises after arrest",
+          "What became of Gagik Tsarukyan's enterprises"
+        ],
+        "keywords": [
+          "Gagik Tsarukyan",
+          "arrest",
+          "businesses",
+          "post-arrest",
+          "status",
+          "investigation"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.8854720410017762,
+        "mcp_decision": 2.1079634590132628,
+        "mcp_tool_call": 0.016258792020380497,
+        "llm_generation": 5.075788541988004,
+        "total": 10.085633165988838
+      },
+      "error": null
+    },
+    {
+      "id": "tsarukyan-affected-businesses",
+      "query": "Which businesses owned by Tsarukyan have suspended operations?",
+      "answer": "The businesses owned by Tsarukyan that have suspended operations are:\n\n1. AraratCement factory in Ararat Province\n2. Noy brandy factory in central Yerevan\n3. Multi Wellness recreational and fitness center",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news2.txt"
+      ],
+      "contexts": [
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.09630334374186833,
+          "match_count": 6
+        },
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.09526172751979203,
+          "match_count": 6
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.07966188524590165,
+          "match_count": 5
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.06452452301209573,
+          "match_count": 4
+        },
+        {
+          "id": 6,
+          "source": "docs/news2.txt",
+          "chunk_id": 0,
+          "text": "Armenian authorities are seeking to confiscate roughly $75 million and hundreds of real estate properties from former finance minister and tax chief Gagik Khachatryan.\n\nKhachatryan was arrested on Tuesday and sent into pre-trial detention on Wednesday on charges of money laundering, bribery, and embezzlement. The accusations published by the prosecution on Tuesday include accepting bribes in the form of luxury apartments, misappropriating public funds, and embezzling state-owned real estate.\n\nOn Tuesday, Khachatryan\u2019s legal team released footage of his arrest showing law enforcement officers carrying the 70-year-old former official from his bed on a stretcher. Khachatryan appeared to be groaning in pain.\n\nThe prosecutor\u2019s statement acknowledged that Khachatryan has an unspecified medical condition, but said medical professionals had determined that it was not serious enough to warrant canceling his detention. It also said Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of",
+          "score": null,
+          "rrf_score": 0.06204977817881044,
+          "match_count": 4
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "\u54ea\u5bb6\u7531\u7279\u65af\u62c9\u626c\u7ecf\u8425\u7684\u4f01\u4e1a\u5df2\u6682\u505c\u8fd0\u8425\uff1f",
+          "\u7531\u5854\u62c9\u65af\u626c\u7ba1\u7406\u7684\u4f01\u4e1a\u4e2d\u54ea\u4e9b\u5df2\u6682\u505c\u8425\u4e1a\uff1f",
+          "\u54ea\u4e9b\u7531Tsarukyan\u5bb6\u65cf\u7ba1\u7406\u7684\u4f01\u4e1a\u5df2\u6682\u505c\u670d\u52a1\uff1f"
+        ],
+        "keywords": [
+          "Tsarukyan",
+          "\u4f01\u4e1a",
+          "\u6682\u505c",
+          "\u8fd0\u8425",
+          "\u7ba1\u7406",
+          "\u670d\u52a1"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.799160958995344,
+        "mcp_decision": 2.0539103749906644,
+        "mcp_tool_call": 0.013369708001846448,
+        "llm_generation": 4.276092832995346,
+        "total": 9.142704375000903
+      },
+      "error": null
+    },
+    {
+      "id": "manukyan-arrest",
+      "query": "Who is Aregnaz Manukyan and why was she arrested?",
+      "answer": "I don't have that information in the knowledge base.",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news3.txt"
+      ],
+      "contexts": [
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.11475409836065574,
+          "match_count": 7
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.09526172751979203,
+          "match_count": 6
+        },
+        {
+          "id": 6,
+          "source": "docs/news2.txt",
+          "chunk_id": 0,
+          "text": "Armenian authorities are seeking to confiscate roughly $75 million and hundreds of real estate properties from former finance minister and tax chief Gagik Khachatryan.\n\nKhachatryan was arrested on Tuesday and sent into pre-trial detention on Wednesday on charges of money laundering, bribery, and embezzlement. The accusations published by the prosecution on Tuesday include accepting bribes in the form of luxury apartments, misappropriating public funds, and embezzling state-owned real estate.\n\nOn Tuesday, Khachatryan\u2019s legal team released footage of his arrest showing law enforcement officers carrying the 70-year-old former official from his bed on a stretcher. Khachatryan appeared to be groaning in pain.\n\nThe prosecutor\u2019s statement acknowledged that Khachatryan has an unspecified medical condition, but said medical professionals had determined that it was not serious enough to warrant canceling his detention. It also said Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of",
+          "score": null,
+          "rrf_score": 0.09481048578153778,
+          "match_count": 6
+        },
+        {
+          "id": 5,
+          "source": "docs/news3.txt",
+          "chunk_id": 3,
+          "text": " a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.09221029949182535,
+          "match_count": 6
+        },
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.09143735752674753,
+          "match_count": 6
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Aregnaz Manukyan background and detention",
+          "Details on Aregnaz Manukyan's arrest"
+        ],
+        "keywords": [
+          "Aregnaz Manukyan",
+          "arrest reasons",
+          "detention details",
+          "legal status",
+          "political prisoner",
+          "Armenia politics"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 3.1404921250068583,
+        "mcp_decision": 2.095332790981047,
+        "mcp_tool_call": 0.0037150410062167794,
+        "llm_generation": 3.079699875001097,
+        "total": 8.31933245898108
+      },
+      "error": null
+    },
+    {
+      "id": "mcentee-quote",
+      "query": "What did Helen McEntee say about the EU's decision regarding Armenia?",
+      "answer": "Helen McEntee, Ireland's minister of foreign affairs and defense, said, \"Europe stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners.\"\n\nThis quote is from the European Council's statement regarding the decision to support Armenia's economy following trade restrictions imposed by Russia.",
+      "sources": [
+        "docs/news.md",
+        "docs/news.md",
+        "docs/news3.txt",
+        "docs/news3.txt",
+        "docs/news2.txt"
+      ],
+      "contexts": [
+        {
+          "id": 0,
+          "source": "docs/news.md",
+          "chunk_id": 0,
+          "text": "The European Union on Wednesday announced temporary trade liberalization measures for Armenian products to support Armenia\u2019s economy following trade restrictions imposed by Russia earlier this year.\n\nThe measure involves a temporary suspension of import duties and will cover approximately 80% of Armenia\u2019s exports, including 99% of its fresh fruit, vegetables and plants and more than 91% of its exports of beverages and spirits, the European Council said in a statement. The measures will apply for two years.\n\n\u201cEurope stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners,\u201d Helen McEntee, Ireland's minister of foreign affairs and defense, said, commenting on the decision.\n\nThe Council\u2019s statement added that the arrangements are conditional on Armenia complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms,",
+          "score": null,
+          "rrf_score": 0.13114754098360656,
+          "match_count": 8
+        },
+        {
+          "id": 1,
+          "source": "docs/news.md",
+          "chunk_id": 1,
+          "text": " complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms, the rule of law, and respect to human rights.\n\nThe measure is now subject to approval by the European Parliament, and the Council said it is expected to be adopted without amendments later this month.\n\nAlso read: Armenia faces sweeping Russian import restrictions across industries\n\nMoscow gradually introduced broad restrictions targeting a large share of Armenia\u2019s exports starting in May. The measures affected agricultural produce, alcoholic beverages, flowers and mineral water, despite Armenia\u2019s membership in the Russian-led Eurasian Economic Union.\n\nWhile Russia has described the measures as technical and linked them to alleged systemic violations of product quality, many economists have characterized them as a trade war. The restrictions have coincided with increased political pressure on Yerevan.",
+          "score": null,
+          "rrf_score": 0.11290322580645161,
+          "match_count": 7
+        },
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.09400564713064713,
+          "match_count": 6
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.09353979353979354,
+          "match_count": 6
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.09209611905507428,
+          "match_count": 6
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Helen McEntee Armenia EU statement",
+          "McEntee EU Armenia declaration",
+          "Helen McEntee Armenia EU remarks"
+        ],
+        "keywords": [
+          "Helen McEntee",
+          "EU Armenia",
+          "Armenia EU",
+          "McEntee statement",
+          "EU decision"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.5142536250059493,
+        "mcp_decision": 1.9208707090001553,
+        "mcp_tool_call": 0.0030563329928554595,
+        "llm_generation": 4.176677875017049,
+        "total": 8.61496075001196
+      },
+      "error": null
+    },
+    {
+      "id": "list-documents",
+      "query": "What documents are available in the knowledge base?",
+      "answer": "I don't have that information in the knowledge base.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news2.txt",
+        "docs/news.md",
+        "docs/news3.txt"
+      ],
+      "contexts": [
+        {
+          "id": 6,
+          "source": "docs/news2.txt",
+          "chunk_id": 0,
+          "text": "Armenian authorities are seeking to confiscate roughly $75 million and hundreds of real estate properties from former finance minister and tax chief Gagik Khachatryan.\n\nKhachatryan was arrested on Tuesday and sent into pre-trial detention on Wednesday on charges of money laundering, bribery, and embezzlement. The accusations published by the prosecution on Tuesday include accepting bribes in the form of luxury apartments, misappropriating public funds, and embezzling state-owned real estate.\n\nOn Tuesday, Khachatryan\u2019s legal team released footage of his arrest showing law enforcement officers carrying the 70-year-old former official from his bed on a stretcher. Khachatryan appeared to be groaning in pain.\n\nThe prosecutor\u2019s statement acknowledged that Khachatryan has an unspecified medical condition, but said medical professionals had determined that it was not serious enough to warrant canceling his detention. It also said Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of",
+          "score": null,
+          "rrf_score": 0.12778420240080737,
+          "match_count": 8
+        },
+        {
+          "id": 7,
+          "source": "docs/news2.txt",
+          "chunk_id": 1,
+          "text": " Khachatryan had previously refused to undergo an MRI scan to assess his condition.\n\nThe circumstances of Khachatryan\u2019s arrest sparked criticism from Armenia\u2019s human rights community. Artur Sakunts, head of the Helsinki Citizens\u2019 Assembly-Vanadzor NGO, has argued that bringing a person into a courtroom on a stretcher amounts to degrading treatment.\n\nThe prosecution is now seeking to confiscate numerous assets belonging to Khachatryan, including bonds worth roughly $1.45 million, a loan receivable worth more than $24 million, and approximately $49 million in cash, bringing the total to around $75 million.\n\nIn addition, prosecutors are seeking the confiscation of 193 real estate properties belonging to Khachatryan, including 46 apartments in downtown Yerevan, the country\u2019s most expensive area for real estate. The properties could be worth millions of dollars and also include dozens of houses and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in",
+          "score": null,
+          "rrf_score": 0.12750416026625705,
+          "match_count": 8
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.12435238032006886,
+          "match_count": 8
+        },
+        {
+          "id": 1,
+          "source": "docs/news.md",
+          "chunk_id": 1,
+          "text": " complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms, the rule of law, and respect to human rights.\n\nThe measure is now subject to approval by the European Parliament, and the Council said it is expected to be adopted without amendments later this month.\n\nAlso read: Armenia faces sweeping Russian import restrictions across industries\n\nMoscow gradually introduced broad restrictions targeting a large share of Armenia\u2019s exports starting in May. The measures affected agricultural produce, alcoholic beverages, flowers and mineral water, despite Armenia\u2019s membership in the Russian-led Eurasian Economic Union.\n\nWhile Russia has described the measures as technical and linked them to alleged systemic violations of product quality, many economists have characterized them as a trade war. The restrictions have coincided with increased political pressure on Yerevan.",
+          "score": null,
+          "rrf_score": 0.0919596866291641,
+          "match_count": 6
+        },
+        {
+          "id": 4,
+          "source": "docs/news3.txt",
+          "chunk_id": 2,
+          "text": " a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and the invalidation of results at three constituencies, as well as a controversial decision by the Central Electoral Commission not to hold repeat elections in those constituencies, Prosperous Armenia\u2019s chances of entering parliament were ultimately ended after the Constitutional Court on Saturday rejected the opposition\u2019s appeal seeking to invalidate the election results altogether.\n\nTwo days after the election, Tsarukyan was placed under a travel ban after attempting to leave the country, and economic crime charges were announced against him.\n\nIn a separate development, Aregnaz Manukyan of the Prosperous Armenia party was arrested on Thursday on suspicion of disclosing state secrets. The arrest is believed to be connected to the investigation into Andranik Tevanyan, a former lawmaker who ran for parliament with Prosperous Armenia in the June election. He was arrested in May and charged with high treason.",
+          "score": null,
+          "rrf_score": 0.09184877622377623,
+          "match_count": 6
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "What files are accessible in the company repository?",
+          "Which records are present in our internal library?",
+          "What files are available in our internal archive?"
+        ],
+        "keywords": [
+          "documents",
+          "files",
+          "records",
+          "archive",
+          "repository",
+          "library"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "list_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.13506708299974,
+        "mcp_decision": 1.7319787919986993,
+        "mcp_tool_call": 0.010010500001953915,
+        "llm_generation": 3.176563957997132,
+        "total": 7.053711332991952
+      },
+      "error": null
+    },
+    {
+      "id": "out-of-scope-vacation-policy",
+      "query": "What is the company's vacation policy?",
+      "answer": "I don't have that information in the knowledge base.",
+      "sources": [
+        "docs/news.md",
+        "docs/news3.txt",
+        "docs/news.md",
+        "docs/news3.txt",
+        "docs/news2.txt"
+      ],
+      "contexts": [
+        {
+          "id": 0,
+          "source": "docs/news.md",
+          "chunk_id": 0,
+          "text": "The European Union on Wednesday announced temporary trade liberalization measures for Armenian products to support Armenia\u2019s economy following trade restrictions imposed by Russia earlier this year.\n\nThe measure involves a temporary suspension of import duties and will cover approximately 80% of Armenia\u2019s exports, including 99% of its fresh fruit, vegetables and plants and more than 91% of its exports of beverages and spirits, the European Council said in a statement. The measures will apply for two years.\n\n\u201cEurope stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners,\u201d Helen McEntee, Ireland's minister of foreign affairs and defense, said, commenting on the decision.\n\nThe Council\u2019s statement added that the arrangements are conditional on Armenia complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms,",
+          "score": null,
+          "rrf_score": 0.09504502177856224,
+          "match_count": 6
+        },
+        {
+          "id": 2,
+          "source": "docs/news3.txt",
+          "chunk_id": 0,
+          "text": "Operations at multiple businesses owned by Gagik Tsarukyan, billionaire and leader of the opposition Prosperous Armenia party, have been suspended since his arrest on Monday.\n\nAccording to Radio Free Europe\u2019s Armenian service, workers at the AraratCement factory in the southwestern Ararat Province, a key asset of the tycoon\u2019s business empire, gathered in large numbers near the facility on Thursday, demanding explanations on when they would be allowed to return to work. The workers told the publication they had also not received their June salaries and were facing financial difficulties. The company has so far been unable to tell employees when operations would resume.\n\nThe entrances to the facility have been sealed since Monday, and police prevented workers from entering the building on Thursday.\n\nOperations have also been suspended at other major businesses known to be directly or indirectly owned by Tsarukyan, including the Noy brandy factory in central Yerevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of",
+          "score": null,
+          "rrf_score": 0.08144678636481915,
+          "match_count": 5
+        },
+        {
+          "id": 1,
+          "source": "docs/news.md",
+          "chunk_id": 1,
+          "text": " complying with applicable rules of origin, engaging in administrative cooperation with the EU, refraining from introducing trade restrictions on EU imports, and remaining compliant with the bloc\u2019s core principles, which include democratic norms, the rule of law, and respect to human rights.\n\nThe measure is now subject to approval by the European Parliament, and the Council said it is expected to be adopted without amendments later this month.\n\nAlso read: Armenia faces sweeping Russian import restrictions across industries\n\nMoscow gradually introduced broad restrictions targeting a large share of Armenia\u2019s exports starting in May. The measures affected agricultural produce, alcoholic beverages, flowers and mineral water, despite Armenia\u2019s membership in the Russian-led Eurasian Economic Union.\n\nWhile Russia has described the measures as technical and linked them to alleged systemic violations of product quality, many economists have characterized them as a trade war. The restrictions have coincided with increased political pressure on Yerevan.",
+          "score": null,
+          "rrf_score": 0.07966112252369524,
+          "match_count": 5
+        },
+        {
+          "id": 3,
+          "source": "docs/news3.txt",
+          "chunk_id": 1,
+          "text": "erevan and the Multi Wellness recreational and fitness center.\n\nAlso on Thursday, Prime Minister Nikol Pashinyan reiterated his plan to seek the nationalization of AraratCement, following the announcement of such plans earlier in May. The move to nationalize the facility is being pursued by the Prosecutor General\u2019s Office, which has stated that there were violations in Tsarukyan\u2019s acquisition of the plant from the state in the early 2000s.\n\nAlso read: Armenian court seizes $100 mn ski resort land from Gagik Tsarukyan-led Olympic Committee\n\nTsarukyan was arrested on Monday and placed in two months of pre-trial detention on Tuesday after being charged with large-scale money laundering and fraud. In a message from jail on Thursday, he denied the accusations, calling them \u201cobviously false\u201d and \u201cfabricated.\u201d\n\nThe arrest came a month after Armenia held a nationwide parliamentary election, in which Tsarukyan\u2019s Prosperous Armenia party finished just several hundred votes short of the 4% threshold required to win parliamentary seats.\n\nFollowing a week of recounts and",
+          "score": null,
+          "rrf_score": 0.06350006400409626,
+          "match_count": 4
+        },
+        {
+          "id": 8,
+          "source": "docs/news2.txt",
+          "chunk_id": 2,
+          "text": " and apartments outside the capital.\n\nIn a separate proceeding, Armenian authorities have been negotiating with the United States since 2020 to recover approximately $30 million from a mansion previously owned by Khachatryan in the U.S. The property was sold at auction last year, but the recovery proceedings remain ongoing.\n\nKhachatryan served as chairman of Armenia\u2019s State Revenue Committee, the country\u2019s tax and customs authority, from 2008 to 2014, and as minister of finance from 2014 to 2016, both under then-president Serzh Sargsyan.",
+          "score": null,
+          "rrf_score": 0.06280843765045739,
+          "match_count": 4
+        }
+      ],
+      "expansion": {
+        "alternative_queries": [
+          "Employee PTO guidelines",
+          "Company annual leave rules",
+          "Vacation benefits stipulations"
+        ],
+        "keywords": [
+          "PTO",
+          "annual leave",
+          "vacation",
+          "benefits",
+          "guidelines",
+          "rules"
+        ],
+        "error": null
+      },
+      "mcp_used": true,
+      "mcp_tool": "search_documents",
+      "fallback": false,
+      "timings": {
+        "retrieval": 2.0143823329999577,
+        "mcp_decision": 1.81769658398116,
+        "mcp_tool_call": 0.0037689580058213323,
+        "llm_generation": 3.2406554160115775,
+        "total": 7.0765902920102235
+      },
+      "error": null
+    }
+  ]
+}

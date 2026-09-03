@@ -14,6 +14,32 @@ from rag.fallback import generate_fallback_sync
 from mcp.client import MCPClient
 from config import OLLAMA_MODEL, USE_HYBRID_RETRIEVAL, DEBUG_PROMPT
 
+def _context_records(contexts):
+    """Reduce retrieved chunks to the fields worth keeping for benchmarking."""
+    return [
+        {
+            "id": c["id"],
+            "source": c["source"],
+            "chunk_id": c["chunk_id"],
+            "text": c["text"],
+            "score": c.get("score"),
+            "rrf_score": c.get("rrf_score"),
+            "match_count": c.get("match_count"),
+        }
+        for c in contexts
+    ]
+
+
+def _expansion_record(expansion):
+    if expansion is None:
+        return None
+    return {
+        "alternative_queries": expansion.alternative_queries,
+        "keywords": expansion.keywords,
+        "error": expansion.error,
+    }
+
+
 class CompanyKBAssistant:
     """Company Knowledge Base Assistant combining RAG and MCP."""
     
@@ -165,6 +191,8 @@ Your JSON response:"""
                     "mcp_tool": None,
                     "fallback": True,
                     "timings": timings,
+                    "contexts": [],
+                    "expansion": _expansion_record(expansion),
                 }
 
         if verbose:
@@ -221,6 +249,8 @@ Your JSON response:"""
             "mcp_tool": mcp_tool_used,
             "fallback": False,
             "timings": timings,
+            "contexts": _context_records(contexts),
+            "expansion": _expansion_record(expansion),
         }
     
     def close(self):
