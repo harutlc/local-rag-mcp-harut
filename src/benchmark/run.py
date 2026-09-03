@@ -7,23 +7,29 @@ other branch) to see how retrieval changes affect answers, sources and speed.
 import json
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+import config
 from assistant import CompanyKBAssistant
-from config import (
-    OLLAMA_MODEL,
-    EMBEDDING_MODEL,
-    EXPANSION_MODEL,
-    USE_HYBRID_RETRIEVAL,
-    TOP_K,
-    FTS_TOP_K,
-    RRF_K,
-)
 
 QUERIES_PATH = Path(__file__).parent / "queries.json"
 RESULTS_DIR = Path(__file__).parent / "results"
+
+# Not every config var exists on every branch (e.g. hybrid retrieval settings
+# don't exist on pre-hybrid branches) - snapshot whatever is present so the
+# runner works unmodified across branches.
+CONFIG_VARS = [
+    "OLLAMA_MODEL",
+    "EMBEDDING_MODEL",
+    "EXPANSION_MODEL",
+    "USE_HYBRID_RETRIEVAL",
+    "TOP_K",
+    "FTS_TOP_K",
+    "RRF_K",
+]
 
 
 def _git(*args) -> str | None:
@@ -36,15 +42,7 @@ def _git(*args) -> str | None:
 
 
 def _config_snapshot() -> dict:
-    return {
-        "ollama_model": OLLAMA_MODEL,
-        "embedding_model": EMBEDDING_MODEL,
-        "expansion_model": EXPANSION_MODEL,
-        "use_hybrid_retrieval": USE_HYBRID_RETRIEVAL,
-        "top_k": TOP_K,
-        "fts_top_k": FTS_TOP_K,
-        "rrf_k": RRF_K,
-    }
+    return {name.lower(): getattr(config, name, None) for name in CONFIG_VARS}
 
 
 def run_benchmark() -> dict:
@@ -56,33 +54,33 @@ def run_benchmark() -> dict:
     try:
         for item in queries:
             print(f"-> {item['id']}: {item['query']}")
+            wall_start = time.perf_counter()
             try:
                 result = assistant.query(item["query"], verbose=False)
                 error = None
             except Exception as e:
-                result = {
-                    "answer": None,
-                    "sources": [],
-                    "mcp_used": False,
-                    "mcp_tool": None,
-                    "fallback": False,
-                    "timings": {},
-                    "contexts": [],
-                    "expansion": None,
-                }
+                result = {}
                 error = str(e)
+            wall_elapsed = time.perf_counter() - wall_start
+
+            # Older assistant.py versions don't return timings/contexts/
+            # expansion/fallback - default them so the schema stays uniform
+            # across branches. Wall-clock time is measured here too so
+            # "total" is always present, even without internal timing.
+            timings = result.get("timings", {})
+            timings.setdefault("total", wall_elapsed)
 
             results.append({
                 "id": item["id"],
                 "query": item["query"],
-                "answer": result["answer"],
-                "sources": result["sources"],
-                "contexts": result["contexts"],
-                "expansion": result["expansion"],
-                "mcp_used": result["mcp_used"],
-                "mcp_tool": result["mcp_tool"],
-                "fallback": result["fallback"],
-                "timings": result["timings"],
+                "answer": result.get("answer"),
+                "sources": result.get("sources", []),
+                "contexts": result.get("contexts", []),
+                "expansion": result.get("expansion"),
+                "mcp_used": result.get("mcp_used", False),
+                "mcp_tool": result.get("mcp_tool"),
+                "fallback": result.get("fallback", False),
+                "timings": timings,
                 "error": error,
             })
     finally:
