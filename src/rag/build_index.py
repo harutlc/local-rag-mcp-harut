@@ -10,7 +10,7 @@ from rag.ingest import ingest_documents
 from rag.chunk import chunk_documents
 from rag.embed import embed_chunks
 from rag import store
-from config import FAISS_INDEX_PATH, CHUNKS_PKL_PATH
+from config import FAISS_INDEX_PATH, CHUNKS_PATH
 
 
 def build_index():
@@ -24,7 +24,7 @@ def build_index():
     # Resolve paths relative to src directory
     src_dir = Path(__file__).parent.parent
     index_path = src_dir / FAISS_INDEX_PATH
-    chunks_pkl_path = src_dir / CHUNKS_PKL_PATH
+    chunks_path = src_dir / CHUNKS_PATH
 
     print("📥 Loading documents...")
     documents = ingest_documents()
@@ -43,8 +43,8 @@ def build_index():
     ids = store.write_chunks(chunks)
 
     print("🥒 Caching chunks (pickle)...")
-    chunks_pkl_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(chunks_pkl_path, "wb") as f:
+    chunks_path.parent.mkdir(parents=True, exist_ok=True)
+    with open(chunks_path, "wb") as f:
         pickle.dump(chunks, f)
 
     print("📦 Creating FAISS index...")
@@ -61,7 +61,7 @@ def build_index():
 
     print(f"✅ Indexing complete: {len(chunks)} chunks indexed")
     print(f"   Index saved to: {index_path}")
-    print(f"   Chunks saved to: {store.db_path()} and {chunks_pkl_path}")
+    print(f"   Chunks saved to: {store.db_path()} and {chunks_path}")
 
 
 if __name__ == "__main__":

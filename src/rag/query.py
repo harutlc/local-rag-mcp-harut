@@ -10,7 +10,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from rag import store
 from config import (
     FAISS_INDEX_PATH,
-    CHUNKS_PKL_PATH,
+    CHUNKS_PATH,
     EMBEDDING_MODEL,
     OLLAMA_URL,
     OLLAMA_MODEL,
@@ -30,7 +30,7 @@ def _load_pickle_chunks():
     """Load the chunks.pkl cache - a plain list where position == FAISS id."""
     global _pickle_chunks
 
-    path = Path(__file__).parent.parent / CHUNKS_PKL_PATH
+    path = Path(__file__).parent.parent / CHUNKS_PATH
     if not path.exists():
         _pickle_chunks = []
         return

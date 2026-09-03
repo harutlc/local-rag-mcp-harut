@@ -23,7 +23,7 @@ EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 # single-vector-search path doesn't depend on the FTS store.
 FAISS_INDEX_PATH = "data/index.faiss"
 CHUNKS_DB_PATH = "data/chunks.db"
-CHUNKS_PKL_PATH = "data/chunks.pkl"
+CHUNKS_PATH = "data/chunks.pkl"
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434/api/generate"
