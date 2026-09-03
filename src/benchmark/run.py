@@ -14,7 +14,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, str(Path(__file__).parent))
 import config
+import compare
 from assistant import CompanyKBAssistant
 
 QUERIES_PATH = Path(__file__).parent / "queries.json"
@@ -142,3 +144,10 @@ if __name__ == "__main__":
     path = save_run(run)
     print_summary(run)
     print(f"\n💾 Saved to {path}")
+
+    try:
+        compare.main()
+    except SystemExit as e:
+        # The other mode's result file doesn't exist yet - nothing to compare
+        # against until it does, not a failure of this run.
+        print(f"\nℹ️  Skipping comparison: {e}")
