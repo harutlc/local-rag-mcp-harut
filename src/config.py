@@ -45,7 +45,7 @@ FALLBACK_TEMPERATURE = 0.4
 # Use the full hybrid pipeline (query expansion -> parallel vector + FTS ->
 # pool/dedupe -> RRF) instead of a single vector search. Costs one extra LLM
 # call per question for the expansion; set False to fall back to vector-only.
-USE_HYBRID_RETRIEVAL = False
+USE_HYBRID_RETRIEVAL = True
 
 # Reciprocal Rank Fusion: damping constant. Higher values flatten the advantage
 # of top positions, so agreement across searches matters more than any single
