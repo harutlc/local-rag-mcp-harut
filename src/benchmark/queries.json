@@ -1,0 +1,42 @@
+[
+  {
+    "id": "eu-armenia-trade-measures",
+    "query": "What trade measures did the EU announce for Armenia and why?"
+  },
+  {
+    "id": "eu-armenia-export-coverage",
+    "query": "What percentage of Armenia's exports are covered by the EU's suspended import duties?"
+  },
+  {
+    "id": "khachatryan-confiscation-amount",
+    "query": "How much money and how many properties are prosecutors trying to confiscate from Gagik Khachatryan?"
+  },
+  {
+    "id": "khachatryan-government-roles",
+    "query": "What government positions did Gagik Khachatryan hold before his arrest?"
+  },
+  {
+    "id": "tsarukyan-arrest-reason",
+    "query": "Why was Gagik Tsarukyan arrested and what happened to his businesses afterward?"
+  },
+  {
+    "id": "tsarukyan-affected-businesses",
+    "query": "Which businesses owned by Tsarukyan have suspended operations?"
+  },
+  {
+    "id": "manukyan-arrest",
+    "query": "Who is Aregnaz Manukyan and why was she arrested?"
+  },
+  {
+    "id": "mcentee-quote",
+    "query": "What did Helen McEntee say about the EU's decision regarding Armenia?"
+  },
+  {
+    "id": "list-documents",
+    "query": "What documents are available in the knowledge base?"
+  },
+  {
+    "id": "out-of-scope-vacation-policy",
+    "query": "What is the company's vacation policy?"
+  }
+]

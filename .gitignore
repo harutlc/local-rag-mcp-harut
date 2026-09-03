@@ -164,6 +164,8 @@ index.faiss
 # Pickle files (chunks cache)
 *.pkl
 chunks.pkl
+*.db
+chunks.db
 
 # Model files (if storing locally)
 *.bin
@@ -207,6 +209,11 @@ datasets/
 *.csv
 *.json
 *.parquet
+
+# Benchmark query set and run results - tracked deliberately so runs on
+# different branches can be diffed to compare retrieval quality/speed.
+!src/benchmark/queries.json
+!src/benchmark/results/*.json
 
 # Documentation build
 docs/_build/

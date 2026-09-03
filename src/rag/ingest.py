@@ -13,14 +13,18 @@ SUPPORTED_EXTENSIONS = {".txt", ".md", ".pdf", ".docx"}
 
 def load_document(path: Path) -> str:
     """Load document content based on file type."""
-    if path.suffix == ".txt" or path.suffix == ".md":
+    # Lowercased to match how SUPPORTED_EXTENSIONS is checked, so a file named
+    # NOTES.MD is not accepted by the caller and then rejected here.
+    suffix = path.suffix.lower()
+
+    if suffix == ".txt" or suffix == ".md":
         return path.read_text(encoding="utf-8", errors="ignore")
 
-    if path.suffix == ".pdf":
+    if suffix == ".pdf":
         reader = PdfReader(path)
         return "\n".join(page.extract_text() or "" for page in reader.pages)
 
-    if path.suffix == ".docx":
+    if suffix == ".docx":
         doc = Docx(path)
         return "\n".join(p.text for p in doc.paragraphs)
 
@@ -36,6 +40,8 @@ def ingest_documents():
         print(f"Warning: Documents directory {DOCUMENTS_DIR} does not exist")
         return documents
 
+    # rglob already walks subdirectories, so anything that is not a supported
+    # file is simply skipped.
     for path in base_dir.rglob("*"):
         if path.is_file() and path.suffix.lower() in SUPPORTED_EXTENSIONS:
             print(f"Loading: {path}")
@@ -46,8 +52,6 @@ def ingest_documents():
                 })
             except Exception as e:
                 print(f"Error loading {path}: {e}")
-        else:
-            [documents.append(doc) for doc in ingest_documents(path)]
 
     return documents
 

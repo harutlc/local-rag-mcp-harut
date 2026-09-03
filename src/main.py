@@ -4,7 +4,7 @@ Company Knowledge Base Assistant - Main Entry Point
 """
 
 import sys
-from assistant import CompanyKBAssistant
+
 
 def main():
     """Main entry point for the assistant."""
@@ -13,7 +13,11 @@ def main():
         from rag.build_index import build_index
         build_index()
         return
-    
+
+    # Imported here, not at module level: importing the assistant loads the
+    # index (building it if missing), which would double-build above.
+    from assistant import CompanyKBAssistant, print_timing_summary
+
     # Interactive Q&A mode
     assistant = CompanyKBAssistant()
     
@@ -43,12 +47,17 @@ def main():
                 
                 if result["sources"]:
                     print("\n📚 Sources:")
+                    seen_sources = set()
                     for src in result["sources"]:
-                        print(f"  • {src}")
+                        if src not in seen_sources:
+                            print(f"  • {src}")
+                            seen_sources.add(src)
                 
                 if result["mcp_used"]:
                     print(f"\n🔧 Used MCP tool: {result['mcp_tool']}")
-                
+
+                print_timing_summary(result.get("timings"))
+
             except Exception as e:
                 print(f"❌ Error: {e}")
                 import traceback
