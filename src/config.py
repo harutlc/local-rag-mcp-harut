@@ -23,7 +23,8 @@ CHUNKS_DB_PATH = "data/chunks.db"
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434/api/generate"
-OLLAMA_MODEL = "qwen2.5:3b"
+# OLLAMA_MODEL = "qwen2.5:3b"
+OLLAMA_MODEL = "qwen3:0.6b"
 
 # RAG retrieval configuration
 TOP_K = 5
@@ -32,7 +33,8 @@ TOP_K = 5
 FTS_TOP_K = 10
 
 # Fallback message node: used when query expansion produces nothing usable
-FALLBACK_MODEL = "qwen2.5:3b"
+# FALLBACK_MODEL = "qwen2.5:3b"
+FALLBACK_MODEL = "qwen3:0.6b"
 FALLBACK_NUM_SUGGESTIONS = 3
 FALLBACK_TEMPERATURE = 0.4
 
@@ -48,11 +50,11 @@ RRF_K = 60
 
 # Print the expansion (alternative queries, keywords) and every vector/FTS
 # search's hit count and chunks before rank fusion. Off by default - verbose.
-DEBUG_RETRIEVAL = True
+DEBUG_RETRIEVAL = False
 
 # Print the final prompt sent to the LLM to generate the answer (RAG context,
 # MCP tool output if any, and the question). Off by default - verbose.
-DEBUG_PROMPT = True
+DEBUG_PROMPT = False
 
 # Query expansion configuration
 # Base host for the `ollama` python package client (OLLAMA_URL above is the raw
@@ -60,9 +62,10 @@ DEBUG_PROMPT = True
 OLLAMA_HOST = "http://localhost:11434"
 # Model used to generate alternative queries and keywords. Can be swapped for a
 # smaller/faster model, e.g. qwen3:1.7b
-EXPANSION_MODEL = "qwen2.5:3b"
+# EXPANSION_MODEL = "qwen2.5:3b"
+EXPANSION_MODEL = "qwen3:0.6b"
 EXPANSION_NUM_ALTERNATIVES = 3
 EXPANSION_NUM_KEYWORDS = 6
-EXPANSION_TEMPERATURE = 0.1
+EXPANSION_TEMPERATURE = 0.2
 # seconds
 EXPANSION_TIMEOUT = 30
