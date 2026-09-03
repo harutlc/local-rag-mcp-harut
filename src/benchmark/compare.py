@@ -17,7 +17,7 @@ OUT_PATH = RESULTS_DIR / "comparison.md"
 
 def _load(path: Path) -> dict:
     if not path.exists():
-        raise SystemExit(f"Missing {path} - run benchmark/run.py on that branch first.")
+        raise SystemExit(f"Missing {path} - run benchmark/run.py in that mode first.")
     return json.loads(path.read_text())
 
 

@@ -1,8 +1,10 @@
 """Run the fixed benchmark query set against the assistant and record results.
 
 Each run is tagged with the current git branch/commit and a config snapshot,
-so a run on this branch can later be diffed against a run on master (or any
-other branch) to see how retrieval changes affect answers, sources and speed.
+and saved to hybrid.json or main.json depending on USE_HYBRID_RETRIEVAL - not
+which branch it ran on, since either branch can run either mode - so a run
+with hybrid retrieval on can be diffed against one with it off to see how
+retrieval changes affect answers, sources and speed.
 """
 import json
 import subprocess
@@ -107,14 +109,17 @@ def run_benchmark() -> dict:
 
 
 def save_run(run: dict) -> Path:
-    """Write the run to a fixed, branch-named file - main.json or hybrid.json.
+    """Write the run to a fixed, mode-named file - hybrid.json or main.json.
 
-    Only two branches are ever compared here, so each run overwrites its
-    branch's file rather than accumulating a new timestamped file every time
-    (the run's own "timestamp" field still records when it happened).
+    What's actually being compared is the retrieval mode, not the branch -
+    both branches can now run either mode (USE_HYBRID_RETRIEVAL flips it), so
+    the filename follows the config snapshot rather than the git branch name.
+    Each run overwrites its mode's file rather than accumulating a new
+    timestamped file every time (the run's own "timestamp" field still
+    records when it happened).
     """
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
-    name = "main" if run["branch"] == "main" else "hybrid"
+    name = "hybrid" if run["config"].get("use_hybrid_retrieval") else "main"
     path = RESULTS_DIR / f"{name}.json"
     path.write_text(json.dumps(run, indent=2))
     return path
