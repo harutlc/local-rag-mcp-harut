@@ -1,0 +1,234 @@
+{
+  "branch": "main",
+  "commit": "a6583d4",
+  "timestamp": "2026-09-03T07:16:53.885216+00:00",
+  "config": {
+    "ollama_model": "qwen3:0.6b",
+    "embedding_model": "all-MiniLM-L6-v2",
+    "expansion_model": null,
+    "use_hybrid_retrieval": null,
+    "top_k": 5,
+    "fts_top_k": null,
+    "rrf_k": null
+  },
+  "summary": {
+    "num_queries": 10,
+    "num_errors": 0,
+    "num_fallback": 0,
+    "num_mcp_used": 3,
+    "avg_total_seconds": 7.242816045699874,
+    "max_total_seconds": 10.6149932089902
+  },
+  "results": [
+    {
+      "id": "eu-armenia-trade-measures",
+      "query": "What trade measures did the EU announce for Armenia and why?",
+      "answer": "The EU announced temporary trade liberalization measures for Armenia, including a suspension of import duties and coverage of 80% of Armenia's exports (fresh fruits, vegetables, plants, beverages, and spirits). These measures are conditional on Armenia complying with rules of origin and cooperating with the EU, with the goal of supporting Armenia's economy and promoting closer cooperation.",
+      "sources": [
+        "docs/news.md",
+        "docs/news4.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 10.6149932089902
+      },
+      "error": null
+    },
+    {
+      "id": "eu-armenia-export-coverage",
+      "query": "What percentage of Armenia's exports are covered by the EU's suspended import duties?",
+      "answer": "The percentage of Armenia's exports covered by the EU's suspended import duties is **80%**.",
+      "sources": [
+        "docs/news.md",
+        "docs/news4.txt",
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 6.171696875011548
+      },
+      "error": null
+    },
+    {
+      "id": "khachatryan-confiscation-amount",
+      "query": "How much money and how many properties are prosecutors trying to confiscate from Gagik Khachatryan?",
+      "answer": "Prosecutors are trying to confiscate **$75 million** in total, including **$1.45 million in bonds**, **$24 million in a loan**, and **$49 million in cash** (summing to approximately $75 million). Additionally, they are seeking **193 real estate properties**, with **46 apartments in Yerevan** and **dozens of properties outside the capital**.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news4.txt",
+        "docs/news.md",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 7.951538082998013
+      },
+      "error": null
+    },
+    {
+      "id": "khachatryan-government-roles",
+      "query": "What government positions did Gagik Khachatryan hold before his arrest?",
+      "answer": "Gagik Khachatryan held the following government positions before his arrest:  \n1. **Chairman of Armenia\u2019s State Revenue Committee** from 2008 to 2014.  \n2. **Minister of Finance** from 2014 to 2016.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news4.txt",
+        "docs/news.md",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 5.491702874976909
+      },
+      "error": null
+    },
+    {
+      "id": "tsarukyan-arrest-reason",
+      "query": "Why was Gagik Tsarukyan arrested and what happened to his businesses afterward?",
+      "answer": "Gagik Tsarukyan was arrested on Monday after being charged with large-scale money laundering and fraud. The charges were related to his business activities, and after his arrest, his businesses, including operations at AraratCement, Noy, and Multi Wellness, were suspended. Additionally, there were reports of financial difficulties and legal consequences for his companies.",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news2.txt",
+        "docs/news4.txt",
+        "docs/news.md",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 8.214243417023681
+      },
+      "error": null
+    },
+    {
+      "id": "tsarukyan-affected-businesses",
+      "query": "Which businesses owned by Tsarukyan have suspended operations?",
+      "answer": "The businesses owned by Gagik Tsarukyan who have suspended operations are AraratCement and Noy brandy factory, as well as Multi Wellness recreational and fitness center.",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news4.txt",
+        "docs/news2.txt",
+        "docs/news.md",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": true,
+      "mcp_tool": "read_document",
+      "fallback": false,
+      "timings": {
+        "total": 7.1529599580098875
+      },
+      "error": null
+    },
+    {
+      "id": "manukyan-arrest",
+      "query": "Who is Aregnaz Manukyan and why was she arrested?",
+      "answer": "I don't have that information in the knowledge base.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news4.txt",
+        "docs/news.md",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 5.105680457985727
+      },
+      "error": null
+    },
+    {
+      "id": "mcentee-quote",
+      "query": "What did Helen McEntee say about the EU's decision regarding Armenia?",
+      "answer": "Helen McEntee said, \"Europe stands with Armenia and its people, who have chosen a clear path for reform and closer cooperation with the European Union. Today\u2019s decision sends a clear message: when faced with economic coercion, the EU will respond. We will create new opportunities and stand with our partners,\" regarding the EU's decision to implement temporary trade liberalization measures for Armenia.",
+      "sources": [
+        "docs/news.md",
+        "docs/news4.txt",
+        "docs/news2.txt",
+        "docs/news3.txt",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": false,
+      "mcp_tool": null,
+      "fallback": false,
+      "timings": {
+        "total": 6.951510874991072
+      },
+      "error": null
+    },
+    {
+      "id": "list-documents",
+      "query": "What documents are available in the knowledge base?",
+      "answer": "The knowledge base contains information about various documents, including news about Gagik Khachatryan's arrest, his assets, and the legal proceedings, as well as news related to Armenian politics, trade liberalization, and railway concessions. The provided context is a single text containing all these documents.",
+      "sources": [
+        "docs/news2.txt",
+        "docs/news.md",
+        "docs/news3.txt",
+        "docs/news4.txt",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": true,
+      "mcp_tool": "list_documents",
+      "fallback": false,
+      "timings": {
+        "total": 7.379123291000724
+      },
+      "error": null
+    },
+    {
+      "id": "out-of-scope-vacation-policy",
+      "query": "What is the company's vacation policy?",
+      "answer": "I don't have that information in the knowledge base.",
+      "sources": [
+        "docs/news3.txt",
+        "docs/news.md",
+        "docs/news4.txt",
+        "docs/news2.txt",
+        "docs/news4.txt"
+      ],
+      "contexts": [],
+      "expansion": null,
+      "mcp_used": true,
+      "mcp_tool": "list_documents",
+      "fallback": false,
+      "timings": {
+        "total": 7.394711416010978
+      },
+      "error": null
+    }
+  ]
+}
