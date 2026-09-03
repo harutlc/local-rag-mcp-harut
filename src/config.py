@@ -17,9 +17,13 @@ EMBEDDING_MODEL = "all-MiniLM-L6-v2"
 # EMBEDDING_MODEL = "nomic-embed-text"
 
 # Storage paths (relative to src directory)
-# FAISS holds the vectors; SQLite holds the chunk text and the FTS index
+# FAISS holds the vectors; SQLite holds the chunk text and the FTS index used
+# by hybrid retrieval. chunks.pkl is a plain list of chunks (position == FAISS
+# id), used instead of SQLite when USE_HYBRID_RETRIEVAL is False so the
+# single-vector-search path doesn't depend on the FTS store.
 FAISS_INDEX_PATH = "data/index.faiss"
 CHUNKS_DB_PATH = "data/chunks.db"
+CHUNKS_PKL_PATH = "data/chunks.pkl"
 
 # Ollama configuration
 OLLAMA_URL = "http://localhost:11434/api/generate"

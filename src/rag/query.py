@@ -1,4 +1,5 @@
 import faiss
+import pickle
 import requests
 import sys
 from pathlib import Path
@@ -9,25 +10,64 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from rag import store
 from config import (
     FAISS_INDEX_PATH,
+    CHUNKS_PKL_PATH,
     EMBEDDING_MODEL,
     OLLAMA_URL,
     OLLAMA_MODEL,
-    TOP_K
+    TOP_K,
+    USE_HYBRID_RETRIEVAL,
 )
 
 model = SentenceTransformer(EMBEDDING_MODEL)
 
-# Global for the loaded FAISS index. Chunk text lives in SQLite (rag.store).
+# Global for the loaded FAISS index. Chunk text lives in SQLite (rag.store)
+# when hybrid retrieval is on, or in the chunks.pkl cache below when it's off.
 index = None
+_pickle_chunks = None
+
+
+def _load_pickle_chunks():
+    """Load the chunks.pkl cache - a plain list where position == FAISS id."""
+    global _pickle_chunks
+
+    path = Path(__file__).parent.parent / CHUNKS_PKL_PATH
+    if not path.exists():
+        _pickle_chunks = []
+        return
+
+    with open(path, "rb") as f:
+        _pickle_chunks = pickle.load(f)
+
+
+def _get_chunks_by_ids_from_pickle(ids: list[int]) -> list[dict]:
+    """Look up chunks by id from the pickle cache, in the given id order."""
+    if _pickle_chunks is None:
+        _load_pickle_chunks()
+
+    results = []
+    for i in ids:
+        if 0 <= i < len(_pickle_chunks):
+            chunk = dict(_pickle_chunks[i])
+            chunk["id"] = i
+            results.append(chunk)
+    return results
 
 
 def _load_index():
-    """Load the FAISS index if both it and the chunk database are present."""
+    """Load the FAISS index and the chunk store for the current retrieval mode."""
     global index
 
     index_path = Path(__file__).parent.parent / FAISS_INDEX_PATH
-    if not index_path.exists() or store.count() == 0:
+    if not index_path.exists():
         return False
+
+    if USE_HYBRID_RETRIEVAL:
+        if store.count() == 0:
+            return False
+    else:
+        _load_pickle_chunks()
+        if not _pickle_chunks:
+            return False
 
     index = faiss.read_index(str(index_path))
     return True
@@ -102,7 +142,12 @@ def search_vector(queries: list[str], limit: int = TOP_K) -> list[list[dict]]:
         score_by_id = {
             int(i): float(s) for i, s in zip(row_ids, row_scores) if int(i) >= 0
         }
-        chunks = store.get_chunks_by_ids(list(score_by_id))
+        ids = list(score_by_id)
+        chunks = (
+            store.get_chunks_by_ids(ids)
+            if USE_HYBRID_RETRIEVAL
+            else _get_chunks_by_ids_from_pickle(ids)
+        )
         for rank, chunk in enumerate(chunks, start=1):
             chunk["score"] = score_by_id[chunk["id"]]
             chunk["rank"] = rank
